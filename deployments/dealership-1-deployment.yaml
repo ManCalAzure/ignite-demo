@@ -16,4 +16,4 @@ spec:
         - name: app
           image: zedmanny/demo-audo-dealer-1
           ports:
-            - containerPort: 5000
+            - containerPort: 80
