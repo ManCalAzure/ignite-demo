@@ -16,4 +16,4 @@ spec:
         - name: app
           image: zedmanny/automobile-counter
           ports:
-            - containerPort: 80
+            - containerPort: 5000
