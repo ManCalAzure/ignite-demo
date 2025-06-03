@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: zedmanny/automobile-counter
+          image: zedmanny/auto-dealer-1:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 80
