@@ -7,6 +7,6 @@ spec:
   selector:
     app: auto-counter-1
   ports:
-    - port: 5000
-      targetPort: 5000
-      nodePort: 30500
+    - port: 80
+      targetPort: 80
+      nodePort: 1080
