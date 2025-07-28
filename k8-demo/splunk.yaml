@@ -31,13 +31,13 @@ spec:
               mountPath: /opt/splunk/var
       volumes:
         - name: splunk-etc
-          nfs:
-            server: 192.168.0.101
+          hostPath:
             path: /mnt/nano-r5s/splunk-pv/etc
+            type: DirectoryOrCreate
         - name: splunk-var
-          nfs:
-            server: 192.168.0.101
+          hostPath:
             path: /mnt/nano-r5s/splunk-pv/var
+            type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: Service
