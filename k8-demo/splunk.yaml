@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: splunk
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: splunk
+  template:
+    metadata:
+      labels:
+        app: splunk
+    spec:
+      containers:
+        - name: splunk
+          image: splunk/splunk:latest
+          ports:
+            - containerPort: 8000
+            - containerPort: 8088
+            - containerPort: 8089
+          env:
+            - name: SPLUNK_START_ARGS
+              value: --accept-license
+            - name: SPLUNK_PASSWORD
+              value: P@ssword123
+          volumeMounts:
+            - name: splunk-etc
+              mountPath: /opt/splunk/etc
+            - name: splunk-var
+              mountPath: /opt/splunk/var
+      volumes:
+        - name: splunk-etc
+          nfs:
+            server: 192.168.0.101
+            path: /mnt/nano-r5s/splunk-pv/etc
+        - name: splunk-var
+          nfs:
+            server: 192.168.0.101
+            path: /mnt/nano-r5s/splunk-pv/var
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: splunk-service
+spec:
+  type: NodePort
+  selector:
+    app: splunk
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 31800
+      name: web
+    - port: 8088
+      targetPort: 8088
+      nodePort: 31888
+      name: hec
+    - port: 8089
+      targetPort: 8089
+      nodePort: 31889
+      name: mgmt
