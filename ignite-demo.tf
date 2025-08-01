@@ -868,7 +868,7 @@ resource "zedcloud_application" "tf_ubuntu_app" {
   project_access_list = []
 }
 
----------- Create K3S App ----------
+# ---------- Create K3S App ----------
 resource "zedcloud_application" "tf_k3s_runtime_app" {
   name = "TF-K3S-APP"
   title = "TF-K3S-APP"
@@ -1005,7 +1005,7 @@ resource "zedcloud_application" "tf_k3s_runtime_app" {
 }
 
 # =================== Instances ===========================
----------- Create FW VM Deploy ----------
+# ---------- Create FW VM Deploy ----------
 resource "zedcloud_application_instance" "tf_fw_deploy" {
   name              = "TF-FW-INSTANCE"
   title             = "TF-FW-INSTANCE"
